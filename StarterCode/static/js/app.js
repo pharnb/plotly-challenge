@@ -4,7 +4,7 @@ function init() {
         console.log(data);
         var names = data.names;
         var selDataset = d3.select("#selDataset");
-        names.forEach(name=>{
+        names.forEach(name => {
             selDataset.append("option").text(name)
         });
     });
@@ -13,7 +13,11 @@ function init() {
 // Demographic info
 function demographicinfo(name){
     d3.json("samples.json").then((data) => {
-            
+        var metadata = data.metadata;
+        // filter where data.id is equal to selected option
+        var filteredmetadata = metadata.filter(data => data.id == name)[0]
+
+
     
 
     })  
