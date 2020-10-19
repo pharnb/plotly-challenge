@@ -35,31 +35,44 @@ function charts(name){
 
         // variables
         var samples = data.samples.filter(data => data.id == name)[0]
-        var x_data = samples.sample_values
-        var y_data = samples.otu_ids
-        var hovertext = samples.otu_labels
+        var sample_values = samples.sample_values
+        var otu_ids = samples.otu_ids
+        var otu_labels = samples.otu_labels
 
-        // var bar
+        // bar chart
         var barchart = d3.select("#bar");
         var trace1 = {
-          x: x_data,
-          y: y_data,
-          text: `${hovertext}`,
+          x: sample_values,
+          y: otu_ids,
+          text: `${otu_labels}`,
           type: "bar",
           orientation: "h"
         };
-
-        var data = [trace1];
-
-        var layout = {
+        var data1 = [trace1];
+        var layout1 = {
           title: "Bar Chart"
         };
+        Plotly.newPlot("bar", data1, layout1);
 
-        Plotly.newPlot("bar", data, layout);
-
-
-    })
-}
+        // bubble chart
+        var bubblechart = d3.select("#bubble");
+        var trace2 = {
+            x: otu_ids,
+            y: sample_values,
+            mode: 'markers',
+            marker: {
+                size: sample_values,
+                color: otu_ids
+            },
+            labels: otu_labels
+        };
+        var data2 = [trace2];
+        var layout2 = {
+            title: "Bubble Chart"
+        };
+        Plotly.newPlot("bubble", data2, layout2);
+    });
+};
 
 // index.html, select new Test Subject ID No.
 function optionChanged(name){
