@@ -17,11 +17,16 @@ function demographicinfo(name){
         // filter where data.id is equal to selected option
         var filteredmetadata = metadata.filter(data => data.id == name)[0]
 
-
-    
-
-    })  
-
+        // put chosen data into table
+        // select table
+        var samplebody = d3.select("#sample-metadata");
+        // wipe old data
+        samplebody.html("")
+        // add new data
+        Object.entries(filteredmetadata).forEach(([key, value]) => {
+            samplebody.append("h5").text(`${key}: ${value}`);   
+        });
+    });
 };
 
 // index.html, select new Test Subject ID No.
