@@ -20,6 +20,10 @@ function demographicinfo(name){
 
 };
 
+// index.html, select new Test Subject ID No.
+function optionChanged(name){
+    demographicinfo(name)
+};
 
 init();
 
