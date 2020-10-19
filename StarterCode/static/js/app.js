@@ -3,10 +3,24 @@ function init() {
     d3.json("samples.json").then((data) => {
         console.log(data);
         var names = data.names;
-        var datasetdropdown = d3.select("#selDataset");
+        var selDataset = d3.select("#selDataset");
         names.forEach(name=>{
-            datasetdropdown.append("option").text(name)
+            selDataset.append("option").text(name)
         });
     });
 };
+
+// Demographic info
+function demographicinfo(name){
+    d3.json("samples.json").then((data) => {
+            
+    
+
+    })  
+
+};
+
+
 init();
+
+    
