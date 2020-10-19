@@ -29,9 +29,42 @@ function demographicinfo(name){
     });
 };
 
+// charts
+function charts(name){
+    d3.json("samples.json").then((data) => {
+
+        // variables
+        var samples = data.samples.filter(data => data.id == name)[0]
+        var x_data = samples.sample_values
+        var y_data = samples.otu_ids
+        var hovertext = samples.otu_labels
+
+        // var bar
+        var barchart = d3.select("#bar");
+        var trace1 = {
+          x: x_data,
+          y: y_data,
+          text: `${hovertext}`,
+          type: "bar",
+          orientation: "h"
+        };
+
+        var data = [trace1];
+
+        var layout = {
+          title: "Bar Chart"
+        };
+
+        Plotly.newPlot("bar", data, layout);
+
+
+    })
+}
+
 // index.html, select new Test Subject ID No.
 function optionChanged(name){
     demographicinfo(name)
+    charts(name)
 };
 
 init();
